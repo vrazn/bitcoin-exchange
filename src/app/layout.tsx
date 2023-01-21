@@ -1,4 +1,4 @@
-import { AnalyticsWrapper } from '@/components/atoms/analytics';
+import { AnalyticsWrapper } from 'src/components/atoms/AnalyticsWrapper';
 
 import './globals.css';
 

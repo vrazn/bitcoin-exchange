@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Miscelaneous info
+The project is using the [Component Driven](https://www.componentdriven.org/) process for bulding UIs.
+We further improve it by following Brad Frost's [Atomic Web Design](https://bradfrost.com/blog/post/atomic-web-design/).
+
+
 ## Getting Started
 
 First, run the development server:
