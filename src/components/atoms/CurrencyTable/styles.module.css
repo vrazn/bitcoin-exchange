@@ -1,0 +1,35 @@
+@keyframes success {
+  0% {
+    opacity: 0;
+    @apply text-success;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    @apply text-neutral-content;
+  }
+}
+
+@keyframes error {
+  0% {
+    opacity: 0;
+    @apply text-error;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    @apply text-neutral-content;
+  }
+}
+
+.highlight[data-change="+"] {
+  animation: success 1s ease-in 1;
+}
+.highlight[data-change="-"] {
+  animation: error 1s ease-in 1;
+}
+
+
+
