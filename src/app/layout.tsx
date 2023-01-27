@@ -1,4 +1,6 @@
-import { AnalyticsWrapper } from 'src/components/atoms/AnalyticsWrapper';
+import { AnalyticsWrapper } from '@/components/atoms/AnalyticsWrapper';
+import { Header } from '@/components/atoms/Header';
+import { Footer } from '@/components/atoms/Footer';
 
 import './globals.css';
 
@@ -15,7 +17,9 @@ export default function RootLayout({
       */}
       <head />
       <body>
+        <Header />
         {children}
+        <Footer />
         <AnalyticsWrapper />
       </body>
     </html>

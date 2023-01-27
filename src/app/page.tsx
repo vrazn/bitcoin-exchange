@@ -1,93 +1,48 @@
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
+import { codes } from 'currency-codes';
 
-import styles from './page.module.css';
+import { getCoinData } from '@/api/coingecko';
 
-const inter = Inter({ subsets: ['latin'] });
+import type { CurrencyRow } from '@/components/atoms/CurrencyTable';
+import { Home as HomeTemplate } from '@/components/templates/Home';
 
-export default function Home() {
+const CURRENCY_CODES = codes();
+
+export const revalidate = 60;
+
+export default async function Home() {
+  const { market_data } = await getCoinData();
+
+  const statData = {
+    currency: 'usd',
+    currentPrice: market_data.current_price.usd,
+    lastUpdated: market_data.last_updated,
+    priceChange24hr: market_data.price_change_24h_in_currency.usd,
+    priceChangePercentage24hr:
+      market_data.price_change_percentage_24h_in_currency.usd,
+    low24Hr: market_data.low_24h.usd,
+    high24Hr: market_data.high_24h.usd,
+  };
+
+  const currencyData = CURRENCY_CODES.reduce((acc, curr) => {
+    const lowerCaseCC = curr.toLowerCase();
+    if (lowerCaseCC in market_data.current_price) {
+      acc.push({
+        currency: curr,
+        price: market_data.current_price[lowerCaseCC],
+        '1hrChange':
+          market_data.price_change_percentage_1h_in_currency[lowerCaseCC],
+        '24hrChange':
+          market_data.price_change_percentage_24h_in_currency[lowerCaseCC],
+        '7dChange':
+          market_data.price_change_percentage_7d_in_currency[lowerCaseCC],
+      });
+    }
+    return acc;
+  }, [] as CurrencyRow[]);
+
   return (
-    <main data-testid="page" className={styles.main}>
-      <div className={styles.description}>
-        <h1 className="text-3xl font-bold underline">Hello, Next.js!</h1>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main className="flex flex-col flex-1">
+      <HomeTemplate currencyData={currencyData} statData={statData} />
     </main>
   );
 }
