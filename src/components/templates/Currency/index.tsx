@@ -56,7 +56,12 @@ const Page: React.FC<Props> = ({ currency, statData, ...rest }) => {
     const closingAmounts = ohlcData.map((arr) => arr[4]);
 
     // Calculate the 10 day rolling average
-    const calculatedEMA = calculateEMA(closingAmounts, 10);
+    let calculatedEMA: number[] = [];
+    try {
+      calculatedEMA = calculateEMA(closingAmounts, 10);
+    } catch {
+      calculatedEMA = [];
+    }
 
     return (
       ohlcData

@@ -37,3 +37,7 @@ export default async function Currency({
     </main>
   );
 }
+
+export async function generateStaticParams() {
+  return [{ currency: 'usd' }];
+}

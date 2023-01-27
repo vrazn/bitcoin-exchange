@@ -33,7 +33,7 @@ const Page: React.FC<Props> = ({ statData, currencyData }) => {
   }, [router]);
 
   useEffect(() => {
-    const interval = setInterval(() => refetchData(), 60000);
+    const interval = setInterval(() => refetchData(), 20000);
 
     return () => clearInterval(interval);
   }, [refetchData]);
