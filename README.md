@@ -1,43 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Technologies Used
+This project has been set up with the following technologies:
+1) [TypeScript](https://www.typescriptlang.org/)
+2) [Next.js 13 (Beta)](https://beta.nextjs.org/docs)
+3) [Storybook](https://storybook.js.org/) for isolated component development, snapshot and interaction testing
+4) [Tailwind CSS](https://tailwindcss.com/) and [daisyUI](https://daisyui.com/) for styling. This is required to be able to render static pages as most current component libraries like Material UI don't support Next.js 13 yet
+5) [NPM](https://www.npmjs.com/) as the package manager
+6) [Jest](https://jestjs.io/) as a test runner of choice
+7) [Eslint](https://eslint.org/) + [Prettier](https://prettier.io/) + [lint-staged](https://www.npmjs.com/package/lint-staged) to keep the code clean
+8) [Vercel](https://vercel.com/) for the ease of hosting the website
 
-## Miscelaneous info
-The project is using the [Component Driven](https://www.componentdriven.org/) process for bulding UIs.
-We further improve it by following Brad Frost's [Atomic Web Design](https://bradfrost.com/blog/post/atomic-web-design/).
+## Project Structure
+
+The project is using the [Component Driven](https://www.componentdriven.org/) process for bulding UIs, further improved by following Brad Frost's [Atomic Web Design](https://bradfrost.com/blog/post/atomic-web-design/)
 
 
 ## Getting Started
 
 First, run the development server:
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Known Bugs
+1) Radio buttons on `/currencies/XXX/` page are not being selected on click
